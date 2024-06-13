@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useHistory } from "react-router-dom";
-import Modal from "react-modal";
-import { IconSend, IconDatabase, IconSeeding } from "@tabler/icons-react";
+import {
+  IconSend,
+  IconDatabase,
+  IconSeeding,
+  IconSearch,
+  IconDotsVertical,
+} from "@tabler/icons-react";
+import axios from "axios";
+import CustomModal from "../CustomModal";
 
 const chains = [
   {
@@ -23,8 +30,6 @@ const chains = [
   },
 ];
 
-Modal.setAppElement("#root");
-
 function Wallets() {
   const history = useHistory();
   const [wallets, setWallets] = useState([]);
@@ -37,6 +42,8 @@ function Wallets() {
   const [newAccountName, setNewAccountName] = useState("");
   const [recipientAddress, setRecipientAddress] = useState("");
   const [sendAmount, setSendAmount] = useState("");
+  const [activities, setActivities] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const storedWallets = JSON.parse(localStorage.getItem("wallets")) || [];
@@ -112,6 +119,17 @@ function Wallets() {
     });
   };
 
+  const fetchActivities = async (wallet) => {
+    try {
+      const response = await axios.get(
+        `${selectedChain.blockExplorerUrl}api?module=account&action=txlist&address=${wallet.address}`
+      );
+      setActivities(response.data.result);
+    } catch (error) {
+      console.error("Error fetching account activities:", error);
+    }
+  };
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(selectedWallet.address);
     alert("Current address copied to clipboard");
@@ -141,6 +159,10 @@ function Wallets() {
       console.error("Transaction failed:", error);
     }
   };
+
+  const filteredWallets = wallets.filter((wallet) =>
+    wallet.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="p-4 bg-[#131722] text-white min-h-screen">
@@ -233,32 +255,63 @@ function Wallets() {
         <h3 className="text-lg font-bold">TFUEL</h3>
         <p>{balance.tfuel}</p>
       </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        className="bg-gray-900 p-6 rounded-lg text-white"
-      >
-        <h2 className="text-xl mb-4">Accounts</h2>
-        {wallets.map((wallet, index) => (
-          <div key={index} className="mb-2">
-            <div className="flex justify-between items-center">
-              <div>
-                <span className="font-bold">
-                  {wallet.name || `Account ${index + 1}`}
-                </span>{" "}
-                - {wallet.address.substring(0, 6)}...
-                {wallet.address.substring(wallet.address.length - 4)}
-              </div>
-              <div>
-                {chains.find((chain) => chain.id === selectedChain.id).name}
-              </div>
+      <div className="bg-[#1f2331] p-4 rounded-md mt-4">
+        <h3 className="text-lg font-bold">Account Activities</h3>
+        {activities.length > 0 ? (
+          activities.map((activity, index) => (
+            <div key={index} className="mb-2">
+              <p>Hash: {activity.hash}</p>
+              <p>From: {activity.from}</p>
+              <p>To: {activity.to}</p>
+              <p>Value: {ethers.utils.formatEther(activity.value)} TFUEL</p>
+              <p>
+                Date: {new Date(activity.timeStamp * 1000).toLocaleString()}
+              </p>
+              <hr className="my-2" />
             </div>
+          ))
+        ) : (
+          <p>No activities found</p>
+        )}
+      </div>
+      <CustomModal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
+        <h2 className="text-xl mb-4">Select an account</h2>
+        <div className="relative mb-4">
+          <IconSearch
+            className="absolute top-3 left-3 text-gray-500"
+            size={20}
+          />
+          <input
+            type="text"
+            placeholder="Search accounts"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="focus:outline-none p-2 pl-10 bg-[#1f2331] ring-0 text-white w-full rounded-md"
+          />
+        </div>
+        {filteredWallets.map((wallet, index) => (
+          <div
+            key={index}
+            onClick={() => {
+              setSelectedWallet(wallet);
+              setModalIsOpen(false);
+            }}
+            className="mb-2 flex justify-between items-center p-2 bg-[#2a2f3b] rounded-md"
+          >
+            <div>
+              <span className="font-bold">
+                {wallet.name || `Account ${index + 1}`}
+              </span>{" "}
+              - {wallet.address.substring(0, 6)}...
+              {wallet.address.substring(wallet.address.length - 4)}
+              <p className="text-sm text-gray-400">0 TFUEL</p>
+            </div>
+            <IconDotsVertical className="text-gray-500" size={20} />
           </div>
         ))}
         <button
           onClick={createWallet}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
+          className="bg-blue-500 w-full text-white px-4 py-2 rounded-md mt-4"
         >
           Create Wallet
         </button>
@@ -267,19 +320,18 @@ function Wallets() {
           placeholder="Enter private key"
           value={privateKey}
           onChange={(e) => setPrivateKey(e.target.value)}
-          className="mt-4 border p-2 bg-gray-700 text-white w-full rounded-md"
+          className="mt-4 focus:outline-none p-2 bg-[#1f2331] ring-0 text-white w-full rounded-md"
         />
         <button
           onClick={importWallet}
-          className="bg-green-500 text-white px-4 py-2 rounded-md mt-4"
+          className="bg-green-500 w-full text-white px-4 py-2 rounded-md mt-4"
         >
           Import Wallet
         </button>
-      </Modal>
-      <Modal
+      </CustomModal>
+      <CustomModal
         isOpen={sendModalIsOpen}
-        onRequestClose={() => setSendModalIsOpen(false)}
-        className="bg-gray-900 p-6 rounded-lg text-white"
+        onClose={() => setSendModalIsOpen(false)}
       >
         <h2 className="text-xl mb-4">Send Tokens</h2>
         <input
@@ -287,24 +339,29 @@ function Wallets() {
           placeholder="Recipient Address"
           value={recipientAddress}
           onChange={(e) => setRecipientAddress(e.target.value)}
-          className="mb-4 border p-2 bg-gray-700 text-white w-full rounded-md"
+          className="mb-4 focus:outline-none p-2 bg-[#1f2331] ring-0 text-white w-full rounded-md"
         />
         <input
           type="text"
           placeholder="Amount"
           value={sendAmount}
           onChange={(e) => setSendAmount(e.target.value)}
-          className="mb-4 border p-2 bg-gray-700 text-white w-full rounded-md"
+          className="mb-4 focus:outline-none p-2 bg-[#1f2331] ring-0 text-white w-full rounded-md"
         />
         <button
           onClick={sendTokens}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md"
+          className="bg-blue-500 w-full text-white px-4 py-2 rounded-md"
         >
           Send
         </button>
-      </Modal>
+      </CustomModal>
     </div>
   );
 }
 
 export default Wallets;
+
+// now note a couple of things
+// 1. make the send money workable in reall life and check if the balanace of the user is upto what he want to send. show an alert for any error.
+
+// 2.
