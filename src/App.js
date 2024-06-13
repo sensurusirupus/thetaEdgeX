@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { IconHome } from "@tabler/icons-react";
+import {
+  IconHome,
+  IconCloud,
+  IconVideo,
+  IconPalette,
+  IconWallet,
+  IconBrandVisualStudio,
+  IconFileDots,
+} from "@tabler/icons-react";
 import Chains from "./components/chains";
 import Wallets from "./components/wallets";
 import NFTs from "./components/nfts";
@@ -18,54 +26,62 @@ function App() {
 
   return (
     <Router>
-      <div className="w-full h-full p-4 bg-gray-100">
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <Link to="/" className="text-blue-500 flex flex-col items-center">
-            <IconHome />
-            <span>Home</span>
+      <div className="w-full h-full p-4 bg-[#131722] text-white">
+        <div className="flex flex-col items-center justify-center mt-0">
+          <img src="/theta.png" width={95} />
+          <h1 class="text-3xl font-bold pb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            ThetaEdgeX
+          </h1>
+        </div>
+        <div className="grid grid-cols-2 gap-6 mb-4">
+          <Link
+            to="/"
+            className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-md py-6 flex flex-col items-center"
+          >
+            <IconCloud size={30} />
+            <span>Theta</span>
+            <span> EdgeCloud</span>
           </Link>
           <Link
             to="/wallets"
-            className="text-blue-500 flex flex-col items-center"
+            className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-md py-6 flex flex-col items-center"
           >
-            <IconHome />
-            <span>Wallets</span>
+            <IconVideo size={30} />
+            <span>Theta</span>
+            <span> Video Services</span>
           </Link>
-          <Link to="/nfts" className="text-blue-500 flex flex-col items-center">
-            <IconHome />
+          <Link
+            to="/nfts"
+            className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-md py-6 flex flex-col items-center"
+          >
+            <IconPalette size={30} />
+            <span>Theta</span>
             <span>NFTs</span>
           </Link>
           <Link
             to="/activity"
-            className="text-blue-500 flex flex-col items-center"
+            className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-md py-6 flex flex-col items-center"
           >
-            <IconHome />
-            <span>Activity</span>
+            <IconWallet size={30} />
+            <span>Theta</span>
+            <span>Wallets</span>
           </Link>
           <Link
             to="/contracts"
-            className="text-blue-500 flex flex-col items-center"
+            className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-md py-6 flex flex-col items-center"
           >
-            <IconHome />
-            <span>Contracts</span>
+            <IconWallet size={30} />
+            <span>Theta</span>
+            <span>Doc</span>
           </Link>
           <Link
             to="/send-tokens"
-            className="text-blue-500 flex flex-col items-center"
+            className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-md py-6 flex flex-col items-center"
           >
-            <IconHome />
-            <span>Send</span>
-          </Link>
-          <Link
-            to="/settings"
-            className="text-blue-500 flex flex-col items-center"
-          >
-            <IconHome />
-            <span>Settings</span>
-          </Link>
-          <Link to="/help" className="text-blue-500 flex flex-col items-center">
-            <IconHome />
-            <span>Help</span>
+            <IconFileDots size={30} />
+
+            <span>Theta</span>
+            <span>VSCode Ext.</span>
           </Link>
         </div>
         <Switch>
