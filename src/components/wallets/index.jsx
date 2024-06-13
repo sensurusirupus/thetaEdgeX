@@ -1,4 +1,3 @@
-// src/components/Wallets.js
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useHistory } from "react-router-dom";
@@ -23,13 +22,12 @@ const chains = [
 ];
 
 function Wallets() {
+  const history = useHistory();
   const [wallets, setWallets] = useState([]);
   const [privateKey, setPrivateKey] = useState("");
   const [selectedWallet, setSelectedWallet] = useState(null);
   const [selectedChain, setSelectedChain] = useState(chains[1]);
   const [balance, setBalance] = useState({ theta: 0, tfuel: 0 });
-
-  const history = useHistory();
 
   useEffect(() => {
     const storedWallets = JSON.parse(localStorage.getItem("wallets")) || [];
@@ -93,10 +91,6 @@ function Wallets() {
     navigator.clipboard.writeText(selectedWallet.address);
   };
 
-  const navigateToSendTokens = () => {
-    history.push("/send-tokens");
-  };
-
   return (
     <div className="p-4">
       <div className="flex flex-col space-y-4 mb-4">
@@ -158,7 +152,12 @@ function Wallets() {
       </div>
       <div className="grid grid-cols-3 gap-4 mb-4">
         <button
-          onClick={navigateToSendTokens}
+          onClick={() =>
+            history.push({
+              pathname: "/send-tokens",
+              state: { selectedWallet, selectedChain },
+            })
+          }
           className="bg-gray-800 p-4 rounded-md text-center"
         >
           Send

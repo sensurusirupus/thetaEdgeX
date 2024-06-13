@@ -4,10 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Popup</title>
-    <link href="static/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="tailwind.css" />
+    <style>
+      body {
+        width: 360px; /* Fixed width for the popup */
+        height: 600px; /* You can adjust the height as needed */
+        overflow: hidden; /* Hide overflow */
+      }
+    </style>
   </head>
   <body class="bg-gray-100">
-    <div id="root" class="w-90 h-150 p-4 bg-white shadow-lg rounded-md"></div>
-    <script src="static/js/main.js"></script>
+    <div id="root"></div>
+    <script src="static/js/bundle.js"></script>
+    <script src="static/js/0.chunk.js"></script>
+    <script src="static/js/main.chunk.js"></script>
   </body>
 </html>
