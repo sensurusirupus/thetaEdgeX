@@ -171,7 +171,7 @@ function Wallets() {
   };
 
   const filteredWallets = wallets.filter((wallet) =>
-    wallet.name.toLowerCase().includes(searchTerm.toLowerCase())
+    wallet?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase())
   );
 
   return (
