@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
+import { IconSend, IconDatabase, IconSeeding } from "@tabler/icons-react";
 
 const chains = [
   {
@@ -152,7 +153,7 @@ function Wallets() {
               chains.find((chain) => chain.id === e.target.value)
             )
           }
-          className="bg-gray-800 text-white p-2 rounded-md"
+          className="bg-[#1f2331] px-4 rounded-full text-white p-2 "
         >
           {chains.map((chain) => (
             <option key={chain.id} value={chain.id}>
@@ -195,26 +196,32 @@ function Wallets() {
           <h2 className="text-xl font-bold">No Wallet Selected</h2>
         )}
       </div>
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-7 mt-4">
         <button
           onClick={() => setSendModalIsOpen(true)}
-          className="bg-[#1f2331] p-4 rounded-md text-center hover:bg-[#19c99d]"
+          className="bg-[#1f2331] p-4 rounded-md text-center hover:bg-[#19c99d] flex flex-col items-center justify-center"
         >
-          <div className="text-2xl">📤</div>
+          <div className="text-2xl ">
+            <IconSend size={30} />
+          </div>
           <div>Send</div>
         </button>
         <button
           onClick={copyToClipboard}
-          className="bg-[#1f2331] p-4 rounded-md text-center hover:bg-[#19c99d]"
+          className="bg-[#1f2331] p-4 rounded-md text-center hover:bg-[#19c99d] flex flex-col items-center justify-center"
         >
-          <div className="text-2xl">📨</div>
+          <div className="text-2xl">
+            <IconSeeding size={32} />
+          </div>
           <div>Receive</div>
         </button>
         <button
           onClick={() => {}}
-          className="bg-[#1f2331] p-4 rounded-md text-center hover:bg-[#19c99d]"
+          className="bg-[#1f2331] p-4 rounded-md text-center hover:bg-[#19c99d] flex flex-col items-center justify-center"
         >
-          <div className="text-2xl">📊</div>
+          <div className="text-2xl">
+            <IconDatabase size={32} />
+          </div>
           <div>Stakes</div>
         </button>
       </div>
@@ -226,10 +233,7 @@ function Wallets() {
         <h3 className="text-lg font-bold">TFUEL</h3>
         <p>{balance.tfuel}</p>
       </div>
-      <div className="bg-[#1f2331] p-4 rounded-md">
-        <h3 className="text-lg font-bold">LOL</h3>
-        <p>8,998,000</p>
-      </div>
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
