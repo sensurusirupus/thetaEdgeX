@@ -149,14 +149,24 @@ function Wallets() {
         selectedChain.rpcUrl
       );
       const signer = selectedWallet.connect(provider);
+      const balance = await signer.getBalance();
+
+      if (balance.lt(ethers.utils.parseEther(sendAmount))) {
+        alert("Insufficient balance");
+        return;
+      }
+
       const tx = await signer.sendTransaction({
         to: recipientAddress,
         value: ethers.utils.parseEther(sendAmount),
       });
       console.log("Transaction sent:", tx);
       setSendModalIsOpen(false);
+      fetchBalance(selectedWallet);
+      fetchActivities(selectedWallet);
     } catch (error) {
       console.error("Transaction failed:", error);
+      alert("Transaction failed. Please try again.");
     }
   };
 
@@ -296,7 +306,7 @@ function Wallets() {
               setSelectedWallet(wallet);
               setModalIsOpen(false);
             }}
-            className="mb-2 flex justify-between items-center p-2 bg-[#2a2f3b] rounded-md"
+            className="mb-2 flex justify-between items-center p-2 bg-[#2a2f3b] rounded-md cursor-pointer hover:bg-[#3b4b59]"
           >
             <div>
               <span className="font-bold">
@@ -360,8 +370,3 @@ function Wallets() {
 }
 
 export default Wallets;
-
-// now note a couple of things
-// 1. make the send money workable in reall life and check if the balanace of the user is upto what he want to send. show an alert for any error.
-
-// 2.
