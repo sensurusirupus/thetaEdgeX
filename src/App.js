@@ -8,6 +8,10 @@ import Activity from "./components/activities";
 import Contracts from "./components/contracts";
 import ConfirmTransaction from "./components/confirmTnx";
 import SendTokens from "./components/sendToken";
+import SketchTo3D from "./components/cloudX/SketchTo3D";
+import Whisper from "./components/cloudX/Whisper";
+import Llama from "./components/cloudX/Llama";
+import ChatGPT from "./components/cloudX/Chatgpt";
 
 function App() {
   const [transaction, setTransaction] = useState(null);
@@ -17,24 +21,30 @@ function App() {
   };
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/cloud" component={Cloud} />
-        <Route path="/wallets" component={Wallets} />
-        <Route path="/nfts" component={NFTs} />
-        <Route path="/activity" component={Activity} />
-        <Route path="/contracts" component={Contracts} />
-        <Route path="/send-tokens" component={SendTokens} />
-        <Route path="/confirm-transaction">
-          <ConfirmTransaction
-            transaction={transaction}
-            onConfirm={() => console.log("Transaction confirmed")}
-            onCancel={() => console.log("Transaction cancelled")}
-          />
-        </Route>
-      </Switch>
-    </Router>
+    <div className="font-Inter">
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/cloud" component={Cloud} />
+          <Route path="/wallets" component={Wallets} />
+          <Route path="/nfts" component={NFTs} />
+          <Route path="/activity" component={Activity} />
+          <Route path="/contracts" component={Contracts} />
+          <Route path="/send-tokens" component={SendTokens} />
+          <Route path="/sketch-to-3d" component={SketchTo3D} />
+          <Route path="/whisper" component={Whisper} />
+          <Route path="/llama" component={Llama} />
+          <Route path="/chatgpt" component={ChatGPT} />
+          <Route path="/confirm-transaction">
+            <ConfirmTransaction
+              transaction={transaction}
+              onConfirm={() => console.log("Transaction confirmed")}
+              onCancel={() => console.log("Transaction cancelled")}
+            />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

@@ -28,7 +28,7 @@ function Home() {
           <span>Wallets</span>
         </Link>
         <Link
-          to="/chains"
+          to="/cloud"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
         >
           <IconCloud size={30} />
@@ -56,7 +56,7 @@ function Home() {
           to="/contracts"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
         >
-          <IconWallet size={30} />
+          <IconFileDots size={30} />
           <span>Theta</span>
           <span>Doc</span>
         </Link>

@@ -10,6 +10,9 @@ module.exports = {
           700: "#3f3f3f",
         },
       },
+      fontFamily: {
+        Inter: ["Inter", "sans-serif"],
+      },
     },
   },
   plugins: [],
