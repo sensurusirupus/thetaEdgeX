@@ -5,7 +5,7 @@ const CustomModal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 px-4">
       <div className="bg-[#131722] p-6 rounded-lg text-white w-full max-w-md relative">
         <button
           onClick={onClose}
