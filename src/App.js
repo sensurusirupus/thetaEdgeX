@@ -12,7 +12,10 @@ import SketchTo3D from "./components/cloudX/SketchTo3D";
 import Whisper from "./components/cloudX/Whisper";
 import Llama from "./components/cloudX/Llama";
 import ChatGPT from "./components/cloudX/Chatgpt";
-
+import Video from "./components/video";
+import UploadVideo from "./components/videoX/UploadVideo";
+import AllVideos from "./components/videoX/AllVideos";
+import StartStream from "./components/videoX/StartStream";
 function App() {
   const [transaction, setTransaction] = useState(null);
 
@@ -27,6 +30,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/cloud" component={Cloud} />
           <Route path="/wallets" component={Wallets} />
+          <Route path="/video" component={Video} />
           <Route path="/nfts" component={NFTs} />
           <Route path="/activity" component={Activity} />
           <Route path="/contracts" component={Contracts} />
@@ -35,6 +39,9 @@ function App() {
           <Route path="/whisper" component={Whisper} />
           <Route path="/llama" component={Llama} />
           <Route path="/chatgpt" component={ChatGPT} />
+          <Route path="/upload-video" component={UploadVideo} />
+          <Route path="/all-videos" component={AllVideos} />
+          <Route path="/start-stream" component={StartStream} />
           <Route path="/confirm-transaction">
             <ConfirmTransaction
               transaction={transaction}

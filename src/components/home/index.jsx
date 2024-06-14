@@ -36,7 +36,7 @@ function Home() {
           <span> EdgeCloud</span>
         </Link>
         <Link
-          to="/wallets"
+          to="/video"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
         >
           <IconVideo size={30} />
