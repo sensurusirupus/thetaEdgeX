@@ -8,7 +8,7 @@ const Video = () => {
       <div className="flex flex-col items-center justify-center mt-0">
         <img src="/theta.png" width={95} className="mb-1" />
         <h1 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-3">
-          Theta Video Services
+          Video Services
         </h1>
       </div>
       <div className="grid grid-cols-1 gap-6">

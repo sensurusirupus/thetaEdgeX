@@ -52,14 +52,15 @@ function Home() {
           <span>NFTs</span>
         </Link>
 
-        <Link
-          to="/contracts"
+        <a
+          target="_blank"
+          href="https://docs.thetatoken.org/docs/what-is-theta-network"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
         >
           <IconFileDots size={30} />
           <span>Theta</span>
           <span>Doc</span>
-        </Link>
+        </a>
         <Link
           to="/send-tokens"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
