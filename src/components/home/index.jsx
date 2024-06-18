@@ -7,6 +7,8 @@ import {
   IconWallet,
   IconFileDots,
   IconBrandVisualStudio,
+  IconCode,
+  IconCpu,
 } from "@tabler/icons-react";
 
 function Home() {
@@ -51,7 +53,22 @@ function Home() {
           <span>Theta</span>
           <span>NFTs</span>
         </Link>
-
+        <Link
+          to="/validator"
+          className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
+        >
+          <IconCpu size={30} />
+          <span>Theta</span>
+          <span>Node Validator</span>
+        </Link>
+        <Link
+          to="/blockstack"
+          className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
+        >
+          <IconCode size={30} />
+          <span>Theta</span>
+          <span>BlockStack</span>
+        </Link>
         <a
           target="_blank"
           href="https://docs.thetatoken.org/docs/what-is-theta-network"

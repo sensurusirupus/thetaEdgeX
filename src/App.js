@@ -16,6 +16,7 @@ import Video from "./components/video";
 import UploadVideo from "./components/videoX/UploadVideo";
 import AllVideos from "./components/videoX/AllVideos";
 import StartStream from "./components/videoX/StartStream";
+import NodeValidator from "./components/validator";
 function App() {
   const [transaction, setTransaction] = useState(null);
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/upload-video" component={UploadVideo} />
           <Route path="/all-videos" component={AllVideos} />
           <Route path="/start-stream" component={StartStream} />
+          <Route path="/validator" component={NodeValidator} />
           <Route path="/confirm-transaction">
             <ConfirmTransaction
               transaction={transaction}
