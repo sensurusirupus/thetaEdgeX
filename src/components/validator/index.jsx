@@ -20,7 +20,6 @@ function NodeValidator() {
       setMemory(navigator.deviceMemory * 4); // Approximation, can be browser dependent
     }
 
-    // Detecting CPU (number of logical processors)
     if (navigator.hardwareConcurrency) {
       setCpu(navigator.hardwareConcurrency);
     }
