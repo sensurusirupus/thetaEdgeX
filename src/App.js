@@ -20,10 +20,6 @@ import NodeValidator from "./components/validator";
 function App() {
   const [transaction, setTransaction] = useState(null);
 
-  const handleConfirmTransaction = (tx) => {
-    setTransaction(tx);
-  };
-
   return (
     <div className="font-Inter">
       <Router>
