@@ -1,11 +1,10 @@
 chrome.runtime.onConnectExternal.addListener((port) => {
   port.onMessage.addListener((msg) => {
     if (msg.type === "CONNECT") {
-      // Handle DApp connection request
       port.postMessage({ type: "CONNECTED" });
     } else if (msg.type === "SIGN_TRANSACTION") {
       const { transaction } = msg;
-      const signedTransaction = signTransaction(transaction); // Implement signTransaction function
+      const signedTransaction = signTransaction(transaction);
       port.postMessage({ type: "SIGNED_TRANSACTION", signedTransaction });
     }
   });
