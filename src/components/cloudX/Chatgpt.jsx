@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { OpenAI } from "openai";
-
+import { useHistory } from "react-router-dom";
+import { IconArrowLeft } from "@tabler/icons-react";
 const openai = new OpenAI({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
@@ -10,6 +11,7 @@ function ChatGPT() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     const chatContainer = document.getElementById("chat-container");
@@ -53,6 +55,12 @@ function ChatGPT() {
 
   return (
     <div className="p-4 bg-[#131722] min-h-screen text-white">
+      <button
+        onClick={() => history.goBack()}
+        className=" bg-[#1f2331] rounded-full text-white   flex items-center transition duration-300"
+      >
+        <IconArrowLeft size={20} className="m-2" />
+      </button>{" "}
       <img src="/openai.png" width={65} className="mb-4" />
       <h1 className="text-2xl font-bold mb-3">ChatGPT (OpenAI)</h1>
       <div className="bg-[#1f2331] p-4 rounded-md mb-4">

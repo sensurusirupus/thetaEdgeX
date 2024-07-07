@@ -7,6 +7,7 @@ import {
   IconSeeding,
   IconSearch,
   IconDotsVertical,
+  IconArrowLeft,
 } from "@tabler/icons-react";
 import axios from "axios";
 import CustomModal from "../CustomModal";
@@ -176,6 +177,12 @@ function Wallets() {
 
   return (
     <div className="p-4 bg-[#131722] text-white min-h-screen">
+      <button
+        onClick={() => history.goBack()}
+        className=" bg-[#1f2331] rounded-full text-white   flex items-center transition duration-300"
+      >
+        <IconArrowLeft size={20} className="m-2" />
+      </button>{" "}
       <div className="flex justify-between items-center mb-4">
         <img src="/theta.png" alt="Theta Logo" className="h-12" />
         <select

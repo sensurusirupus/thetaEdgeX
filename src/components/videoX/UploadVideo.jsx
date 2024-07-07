@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { IconUpload } from "@tabler/icons-react";
 import axios from "axios";
-
+import { useHistory } from "react-router-dom";
+import { IconArrowLeft } from "@tabler/icons-react";
 function UploadVideo() {
   const [id, setId] = useState("");
   const [secret, setSecret] = useState("");
@@ -9,6 +10,7 @@ function UploadVideo() {
   const [uploadResponse, setUploadResponse] = useState(null);
   const [videoId, setVideoId] = useState("");
   const [isUploading, setIsUploading] = useState(false);
+  const history = useHistory();
 
   const handleFileUpload = (event) => {
     setFile(event.target.files[0]);
@@ -87,6 +89,12 @@ function UploadVideo() {
 
   return (
     <div className="p-4 bg-[#131722] min-h-screen text-white">
+      <button
+        onClick={() => history.goBack()}
+        className=" bg-[#1f2331] rounded-full text-white   flex items-center transition duration-300"
+      >
+        <IconArrowLeft size={20} className="m-2" />
+      </button>{" "}
       <h1 className="text-2xl font-bold mb-4">Upload Video</h1>
       <div className="mb-4">
         <label className="block mb-2">ID:</label>

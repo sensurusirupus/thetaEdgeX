@@ -78,14 +78,15 @@ function Home() {
           <span>Theta</span>
           <span>Doc</span>
         </a>
-        <Link
-          to="/send-tokens"
+        <a
+          target="_blank"
+          href="https://docs.thetatoken.org/docs/what-is-theta-network"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
         >
           <IconBrandVisualStudio size={30} />
           <span>Theta</span>
           <span>VSCode Ext.</span>
-        </Link>
+        </a>
       </div>
     </div>
   );

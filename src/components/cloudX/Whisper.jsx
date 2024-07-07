@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { IconMicrophone, IconLoader } from "@tabler/icons-react";
-// import { client } from "@gradio/client";
+import { IconMicrophone, IconLoader, IconArrowLeft } from "@tabler/icons-react";
+import { useHistory } from "react-router-dom";
 
 function Whisper() {
   const [endpoint, setEndpoint] = useState("");
@@ -10,6 +10,7 @@ function Whisper() {
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [recordingTime, setRecordingTime] = useState(0);
   const timerRef = useRef(null);
+  const history = useHistory();
 
   const startRecording = () => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -53,6 +54,12 @@ function Whisper() {
 
   return (
     <div className="p-4 bg-[#131722] min-h-screen text-white">
+      <button
+        onClick={() => history.goBack()}
+        className=" bg-[#1f2331] rounded-full text-white   flex items-center transition duration-300"
+      >
+        <IconArrowLeft size={20} className="m-2" />
+      </button>{" "}
       <img src="/openai.png" width={65} className="mb-4" />
       <h1 className="text-2xl font-bold mb-4">Whisper (OpenAI)</h1>
       <p className="mb-6">

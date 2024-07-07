@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { IconUpload } from "@tabler/icons-react";
+import { IconArrowLeft, IconUpload } from "@tabler/icons-react";
+import { useHistory } from "react-router-dom";
 
 function SketchTo3D() {
   const [endpoint, setEndpoint] = useState("");
   const [image, setImage] = useState(null);
   const [converted3D, setConverted3D] = useState(null);
+  const history = useHistory();
 
   const handleImageUpload = (event) => {
     setImage(URL.createObjectURL(event.target.files[0]));
@@ -39,6 +41,12 @@ function SketchTo3D() {
 
   return (
     <div className="p-4 bg-[#131722] min-h-screen text-white">
+      <button
+        onClick={() => history.goBack()}
+        className=" bg-[#1f2331] rounded-full text-white   flex items-center transition duration-300"
+      >
+        <IconArrowLeft size={20} className="m-2" />
+      </button>{" "}
       <img src="/theta.png" width={95} />
       <h1 className="text-2xl font-bold mb-4">Sketch to 3D (Theta)</h1>
       <p className="mb-6 font-Inter">

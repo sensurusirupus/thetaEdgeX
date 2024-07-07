@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import { useHistory } from "react-router-dom";
+import { IconArrowLeft } from "@tabler/icons-react";
 const AllVideos = () => {
   const [uploadedVideos, setUploadedVideos] = useState([]);
+  const history = useHistory();
 
   const loadUploadedVideos = () => {
     const storedVideos =
@@ -15,6 +17,12 @@ const AllVideos = () => {
 
   return (
     <div className="p-4 bg-[#131722] min-h-screen text-white">
+      <button
+        onClick={() => history.goBack()}
+        className=" bg-[#1f2331] rounded-full text-white   flex items-center transition duration-300"
+      >
+        <IconArrowLeft size={20} className="m-2" />
+      </button>{" "}
       <h1 className="text-2xl font-bold mb-4">All Videos</h1>
       <div className="bg-[#1f2331] p-4 rounded-md">
         <h3 className="text-lg font-bold mb-2">Uploaded Videos</h3>
