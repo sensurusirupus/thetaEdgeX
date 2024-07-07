@@ -34,7 +34,7 @@ function Chains() {
           onClick={() => navigateTo("/sketch-to-3d")}
         >
           {/* <IconBraces size={40} className="mx-auto mb-2" /> */}
-          <img src="/theta.png" className="w-14 mx-auto mb-2" />
+          <img src="/icon.svg" className="w-11 mx-auto mb-6" />
           <div>Sketch to 3D</div>
         </div>
         <div
