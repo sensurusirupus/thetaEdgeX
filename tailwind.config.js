@@ -12,6 +12,7 @@ module.exports = {
       },
       fontFamily: {
         Inter: ["Inter", "sans-serif"],
+        Poppin: ["Poppins"],
       },
     },
   },

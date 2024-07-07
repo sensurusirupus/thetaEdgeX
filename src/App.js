@@ -21,7 +21,7 @@ function App() {
   const [transaction, setTransaction] = useState(null);
 
   return (
-    <div className="font-Inter">
+    <div className="font-Poppin">
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />

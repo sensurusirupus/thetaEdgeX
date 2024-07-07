@@ -4,19 +4,13 @@ import React, { useState, useEffect } from "react";
 function NFTs() {
   const [nfts, setNfts] = useState([]);
 
-  useEffect(() => {
-    // Fetch NFTs for the user's wallet
-    // You will need to implement this part
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <div>
-      <h2>Your NFTs</h2>
-      <ul>
-        {nfts.map((nft, index) => (
-          <li key={index}>{nft.name}</li>
-        ))}
-      </ul>
+    <div className="p-6 bg-[#131722] min-h-screen text-white">
+      <h1 className="text-3xl font-semibold mb-8 text-center">
+        You have no NFT's
+      </h1>
     </div>
   );
 }
