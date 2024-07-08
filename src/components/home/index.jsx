@@ -80,7 +80,7 @@ function Home() {
         </a>
         <a
           target="_blank"
-          href="https://docs.thetatoken.org/docs/what-is-theta-network"
+          href="https://marketplace.visualstudio.com/items?itemName=thetaedgex.thetaedgex"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
         >
           <IconBrandVisualStudio size={30} />
