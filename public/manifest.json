@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Theta Edge Extension",
   "version": "1.0",
-  "description": "Features include AI-assisted coding, smart contract deployment, and seamless integration with Theta network and cloud functionalities.",
+  "description": "AI-assisted coding, smart contract deployment, and seamless integration with Theta network and cloud functionalities.",
   "action": {
     "default_popup": "index.html",
     "default_icon": {
