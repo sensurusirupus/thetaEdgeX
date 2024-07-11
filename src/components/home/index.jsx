@@ -62,7 +62,7 @@ function Home() {
           <span>Node Validator</span>
         </Link>
         <Link
-          to="/blockstack"
+          to="https://thetaedgex.netlify.app"
           className="text-white-500 shadow-md hover:bg-[#19c99d] bg-[#1f2331] rounded-lg py-6 flex flex-col items-center"
         >
           <IconCode size={30} />
