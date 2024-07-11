@@ -3,9 +3,7 @@ import { IconArrowLeft, IconUpload } from "@tabler/icons-react";
 import { useHistory } from "react-router-dom";
 
 function SketchTo3D() {
-  const [endpoint, setEndpoint] = useState(
-    "https://sketchto3dv6pe3ds987-86ca34f902ccefbb.tec-s1.onthetaedgecloud.com/"
-  );
+  const [endpoint, setEndpoint] = useState("");
   const [image, setImage] = useState(null);
   const [converted3D, setConverted3D] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,11 +21,8 @@ function SketchTo3D() {
 
     try {
       setIsLoading(true);
-      // Simulate an API call with a 5000 milliseconds delay
       setTimeout(() => {
-        setConverted3D("/2d.png"); // Adjust the path to the correct location of your image
-        setIsLoading(false);
-        console.log("Conversion simulated successfully");
+        console.log("Conversion failed. Please try again.");
       }, 5000);
     } catch (error) {
       console.error(error);
